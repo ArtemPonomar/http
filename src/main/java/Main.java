@@ -10,12 +10,15 @@ public class Main {
     private static HttpController httpController = new HttpController();
 
     public static void main(String[] args) {
+        httpController.addPhotoToPetWithID(1, "C:\\Users\\User\\Documents\\InteliJIDEA\\http\\http\\src\\main\\resources\\dog.jpg", "lol kek cheburek");
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("1. Add new pet to the store / update an existing pet");
             System.out.println("2. Get pet by ID");
             System.out.println("3. Update pet with ID");
             System.out.println("4. Delete pet with ID");
+            System.out.println("5. Add photo to pet with ID");
+
 
             for (String input = "E"; !input.equals("back"); ) {
                 System.out.println("\nEnter 'back' to return to main menu or enter task number.");
@@ -32,6 +35,9 @@ public class Main {
                         break;
                     case "4":
                         executeTask4(scanner);
+                        break;
+                    case "5":
+                        executeTask5(scanner);
                         break;
                     case "back":
                         break;
@@ -73,5 +79,15 @@ public class Main {
         int id = Integer.parseInt(scanner.next());
         System.out.println("Waiting for response ...");
         httpController.deletePetWithID(id);
+    }
+
+    private static void executeTask5(Scanner scanner) {
+        System.out.println("5. Add photo to pet with ID");
+        System.out.println("Enter the pet id, path to photo, additional information for photo: (10 C:\\Users\\User\\Documents\\InteliJIDEA\\http\\http\\src\\main\\resources\\dog.jpg my dog info)");
+        int id = Integer.parseInt(scanner.next());
+        String path = scanner.next();
+        String info = scanner.nextLine();
+        System.out.println("Waiting for response ...");
+        httpController.addPhotoToPetWithID(id, path, info);
     }
 }
